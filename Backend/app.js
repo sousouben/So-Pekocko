@@ -2,7 +2,8 @@ const express = require('express');// Importation d'express
 const bodyParser = require('body-parser');//Pour gérer la demande POST provenant de l'application front-end, nous devrons être capables d'extraire l'objet JSON de la demande. 
 const mongoose = require('mongoose');
 
-const Sauce = require('./models/Sauce');
+const saucesRoutes = require('./routes/sauces');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -25,34 +26,7 @@ app.use((req, res, next) => {
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
 app.use(bodyParser.json());
 
-app.post('/api/sauces', (req, res, next) => {
-  delete req.body._id;
-  const sauce = new Sauce({
-    ...req.body
-  });
-  sauce.save()
-    .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-    .catch(error => res.status(400).json({ error }));
-});
-
-app.use('/api/sauces ', (req, res, next) => {
-  const sauces = [
-    {
-      _id: '',
-      userId: '',
-      name: '',
-      manufacturer: '',
-      description: '',
-      mainPepper: '',
-      imageUrl: '',
-      heat:0,
-      likes: 0,
-      dislikes:0,
-      usersLiked: [string],
-      usersDisliked: [string],
-    },
-  ];
-  res.status(200).json(sauces);
-});
+app.use('/api/sauces', saucesRoutes);
+app.use('/api/auth', userRoutes);
 
 module.exports = app;

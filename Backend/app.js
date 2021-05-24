@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');//Pour gérer la demande POST provenan
 const mongoose = require('mongoose');
 const path = require('path');
 
-const saucesRoutes = require('./routes/sauces');
+const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
 
 const app = express();
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/images',express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);

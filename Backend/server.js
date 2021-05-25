@@ -13,7 +13,8 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+//configurez le serveur pour qu'il écoute
+const port = normalizePort(process.env.PORT || '3000');//process.env.PORT : si la plateforme de déploiement propose un port par défaut
 app.set('port', port);
 
 const errorHandler = error => {
@@ -36,6 +37,7 @@ const errorHandler = error => {
   }
 };
 
+//fonction qui sera exécutée à chaque appel effectué vers ce serveur
 const server = http.createServer(app);
 
 server.on('error', errorHandler);
@@ -45,4 +47,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+//écoute du serveur
 server.listen(port);

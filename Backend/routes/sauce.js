@@ -6,10 +6,10 @@ const multer = require('../middleware/multer-config');
 const sauceCtrl = require('../controllers/sauce');
 
 //ordre important: auth avant multer sinon image de requete non identifie peuvent etre enregistre
-router.get('/ ', auth, sauceCtrl.getAllSauces);
-router.post('/', auth, multer, sauceCtrl.createSauce); 
+router.get('/ ', auth, sauceCtrl.getAllSauces);//récupère des infos
+router.post('/', auth, multer, sauceCtrl.createSauce); //donne des infos
 router.get('/:id', auth, sauceCtrl.getOneSauce);
-router.put('/:id', auth, multer, sauceCtrl.modifySauce);
-router.delete('/:id', auth, sauceCtrl.deleteSauce);
+router.put('/:id', auth, multer, sauceCtrl.modifySauce);//remplace une info
+router.delete('/:id', auth, sauceCtrl.deleteSauce);//supprimer une ressource
 
 module.exports = router;

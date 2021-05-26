@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
-app.use(express.json());
+app.use(bodyParser.json())
 
 app.use('/images',express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);

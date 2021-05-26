@@ -13,10 +13,10 @@ const sauceSchema = mongoose.Schema({
   mainPepper: { type: String, required: true },// principal ingrédient dans la sauce
   imageUrl: { type: String, required: true },// string de l'image de la sauce téléchargée par l'utilisateur
   heat: { type: Number, required: true },// nombre entre 1 et 10 décrivant la sauce
-  likes: { type:Number, required: false },// nombre d'utilisateurs qui aiment la sauce
-  dislikes: { type:Number, required: false },// nombre d'utilisateurs qui n'aiment pas la sauce
-  usersLiked: { type: [String], required: false },// tableau d'identifiants d'utilisateurs ayant aimé la sauce/[TABLEAU]
-  usersDisliked: { type: [String], required: false }// tableau d'identifiants d'utilisateurs n'ayant pas aimé la sauce./[TABLEAU]
+  likes: { type:Number, default: 0 },// nombre d'utilisateurs qui aiment la sauce
+  dislikes: { type:Number, default: 0 },// nombre d'utilisateurs qui n'aiment pas la sauce
+  usersLiked: { type: [String] },// tableau d'identifiants d'utilisateurs ayant aimé la sauce/[TABLEAU]
+  usersDisliked: { type: [String] }// tableau d'identifiants d'utilisateurs n'ayant pas aimé la sauce./[TABLEAU]
 });
 
 module.exports = mongoose.model('Sauce', sauceSchema);

@@ -12,8 +12,8 @@ const userRoutes = require('./routes/user');
 //crée une application
 const app = express();
 
-// Connection à la base de données MongoDB avec la sécurité vers le fichier .env pour cacher le mot de passe
-mongoose.connect(process.env.url_connection,
+// Connexion à la base de données MongoDB avec la sécurité vers le fichier .env pour cacher le mot de passe
+mongoose.connect(process.env.url_connexion,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

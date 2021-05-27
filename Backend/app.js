@@ -2,6 +2,8 @@ const express = require('express');// Importation d'express permettant de déplo
 const bodyParser = require('body-parser');//Pour gérer la demande POST provenant de l'application front-end, nous devrons être capables d'extraire l'objet JSON de la demande. 
 const mongoose = require('mongoose');//Mongoose est un package qui facilite les interactions avec notre base de données
 const path = require('path');
+const helmet = require('helmet');
+require('dotenv').config();
 
 const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
@@ -9,7 +11,7 @@ const userRoutes = require('./routes/user');
 //crée une application
 const app = express();
 
-mongoose.connect('mongodb+srv://sousou:cqe6A8sPfdH7yzk@cluster0.kc0f6.mongodb.net/so_pekocko?retryWrites=true&w=majority',
+mongoose.connect(process.env.url_connexion,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -27,6 +29,7 @@ app.use((req, res, next) => {
 
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
 app.use(bodyParser.json())
+app.use(helmet())
 
 app.use('/images',express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);

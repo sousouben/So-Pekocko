@@ -3,14 +3,15 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const passwordValidator = require('password-validator');
 
-var schema = new passwordValidator();
+const schema = new passwordValidator();
 schema
-.is().min(8)                                    // Minimum length 8
-.is().max(100)                                  // Maximum length 100
-.has().uppercase()                              // majuscule letters
-.has().lowercase()                              // minuscule letters
-.has().digits(2)                                // chiffres 2 digits
-.has().not().spaces()                           // pas d'espaces 
+.is().min(8)                                    // Minimum 8 caractères
+.is().max(100)                                  // Maximum 100 caractères
+.has().uppercase()                              // Majuscule 
+.has().lowercase()                              // minuscule
+.has().digits(1)                                // 1 Chiffre
+.has().not().spaces()                           // Pas d'espaces 
+
 // Créer un compte utilisateur
 exports.signup = (req, res, next) => {
   if(schema.validate(req.body.password)){
@@ -28,7 +29,7 @@ exports.signup = (req, res, next) => {
     
   }else{
     return res.status(400).json({
-      message: 'mot de passe doit contenir au moin 8 charactère, 2 chiffres, 1 espace'
+      message: 'Le mot de passe doit contenir au moins un nombre, une minuscule, une majuscule et être composé de 8 caractères minimum !'
     })
   }
     

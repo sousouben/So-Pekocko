@@ -2,8 +2,9 @@ const express = require('express');// Importation d'express permettant de déplo
 const bodyParser = require('body-parser');//Pour gérer la demande POST provenant de l'application front-end, nous devrons être capables d'extraire l'objet JSON de la demande. 
 const mongoose = require('mongoose');//Mongoose est un package qui facilite les interactions avec notre base de données
 const path = require('path');
-const helmet = require('helmet');
-require('dotenv').config();
+
+const helmet = require('helmet');// utilisation du module 'helmet' pour la sécurité
+require('dotenv').config();//module sans dépendance qui charge les variables d'environnement à partir d'un .env
 
 const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
@@ -11,7 +12,8 @@ const userRoutes = require('./routes/user');
 //crée une application
 const app = express();
 
-mongoose.connect(process.env.url_connexion,
+// Connection à la base de données MongoDB avec la sécurité vers le fichier .env pour cacher le mot de passe
+mongoose.connect(process.env.url_connection,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

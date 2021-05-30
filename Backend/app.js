@@ -1,10 +1,10 @@
-const express = require('express');// Importation d'express permettant de déployer nos API beaucoup plus rapidement
-const bodyParser = require('body-parser');//Pour gérer la demande POST provenant de l'application front-end, nous devrons être capables d'extraire l'objet JSON de la demande. 
-const mongoose = require('mongoose');//Mongoose est un package qui facilite les interactions avec notre base de données
-const path = require('path');
+const express = require('express');// Import du framework Express
+const bodyParser = require('body-parser');//Import du package body-parser pour traiter l'objet JSON envoyé par le frontend
+const mongoose = require('mongoose');//Facilite les interactions avec la base de données
+const path = require('path');//Donne accès au chemin de notre système de fichier
 
-const helmet = require('helmet');// utilisation du module 'helmet' pour la sécurité
-require('dotenv').config();//module sans dépendance qui charge les variables d'environnement à partir d'un .env
+const helmet = require('helmet');// Installation de Helmet qui configure de manière appropriée des en-têtes HTTP liés à la sécurité
+require('dotenv').config();//sécurisation des données sensibles en les enregistrant dans un fichier .env
 
 const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
@@ -19,22 +19,19 @@ mongoose.connect(process.env.url_connexion,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-app.use((req, res, next) => {
-  //Accéder à notre API depuis n'importe quelle origine ( '*' ) ;
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  //on indique les entêtes qui seront utilisées après la pré-vérification cross-origin afin de donner l'autorisation
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  // // on indique les méthodes autorisées pour les requêtes HTTP
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+app.use((req, res, next) => { //autorisation d acces à l'API
+  res.setHeader('Access-Control-Allow-Origin', '*'); //accéder à API depuis le port 4200  
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); 
+  // ajouter les headers mentionnés aux requêtes envoyées vers notre API
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');// envoyer des requêtes avec les méthodes mentionnées
   next();
 });
 
-// Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
-app.use(bodyParser.json())
-app.use(helmet())
+app.use(bodyParser.json())//définition de la fonction json comme middleware global pour l'application
+app.use(helmet())//Utilisation de Helmet
 
-app.use('/images',express.static(path.join(__dirname, 'images')));
-app.use('/api/sauces', saucesRoutes);
-app.use('/api/auth', userRoutes);
+app.use('/images',express.static(path.join(__dirname, 'images')));//indique à Express qu'il faut gérer la ressource images de manière statique
+app.use('/api/sauces', saucesRoutes);//enregistrement du routeur pour toutes les demandes faites vers /api/sauces
+app.use('/api/auth', userRoutes);//enregistrement du routeur pour toutes les demandes faites vers /api/auth
 
 module.exports = app;

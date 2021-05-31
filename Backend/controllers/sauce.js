@@ -8,6 +8,8 @@ exports.createSauce = (req, res, next) => {
     //Création d'une instance du modèle Sauce
     const sauce = new Sauce({
       ...sauceObject,
+      likes: 0,
+      dislikes: 0,
       imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     // Sauvegarde de la sauce dans la base de données

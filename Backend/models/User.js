@@ -3,8 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator');//Plug-in qui empê
 
 const userSchema = mongoose.Schema({//Schema mongoose qui sert de model
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  userId: { type: String, require: false }
+  password: { type: String, required: true }
 });
 
 userSchema.plugin(uniqueValidator);//Application du plugin Mongoose Unique Validator au modèle utilisateur

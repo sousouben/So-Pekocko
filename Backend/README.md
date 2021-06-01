@@ -28,19 +28,16 @@ L'application va se recharger automatiquement si vous modifiez un fichier source
 💡   Faire tourner le Backend
 Ouvrir le terminal sur ce dossier.
 Pour utiliser le serveur, chargez le package nodemon : npm install -g nodemon.
+puis npm install pour installer les dépendences
 Puis lancez le serveur: nodemon server.
-Pour faire court
-Si les packages sont déja installés, ces commandes suffisent à démarrer les serveurs.
 
-ng serve via le terminal sur le frontend
-nodemon server via le terminal sur le backend
-Se connecter à l'url : http://localhost:4200
 🖥   Connexion
 Ouvrir localhost:4200 dans votre navigateur.
 Pour s'inscrire sur l'application, l'utilisateur doit fournir un email et un mot de passe contenant 08 caractères minimum (dont 1 majuscule, 1 minuscule, 1 chiffre, pas d'espaces).
 
-Url pour se connecter:
-créer un fichier .env : mongodb+srv://{username}:{password}@cluster0.kc0f6.mongodb.net/so_pekocko?retryWrites=true&w=majority
+Url pour se connecter à la base de donnée mongodb
+créer un fichier .env : 
+url_connexion = mongodb+srv://{username}:{password}@{host name}/so_pekocko?retryWrites=true&w=majority
 
 ###Éléments fournis###
 Frontend (Fournit lors de l'installation)

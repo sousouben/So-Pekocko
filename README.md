@@ -50,6 +50,9 @@ url_connexion = mongodb+srv://{username}:{password}@{host name}/so_pekocko?retry
 
 Frontend (Fournit lors de l'installation)
 
+Document: https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/DWJ_FR_P6/Guidelines+API.pdf
+
+Note de cadrage: https://s3.eu-west-1.amazonaws.com/course.oc-static.com/projects/DWJ_FR_P6/P6_Note%20de%20cadrage%20So%20Pekocko_V3.pdf
 
 
 

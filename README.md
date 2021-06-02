@@ -21,6 +21,7 @@ Sécurité OWASP et RGPD
 Le lien du dépôt GitHub pour la partie frontend est le suivant https://github.com/OpenClassrooms-Student-Center/dwj-projet6.git
 
 Cloner ce projet depuis GitHub.
+
 💡   Faire tourner le Frontend
 Ouvrir le terminal sur ce dossier et exécuter npm install pour installer les dépendances.
 Exécuter npm install node-sass pour installer sass.

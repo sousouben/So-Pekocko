@@ -49,7 +49,10 @@ url_connexion = mongodb+srv://{username}:{password}@{host name}/so_pekocko?retry
 ###Éléments fournis###
 
 Frontend (Fournit lors de l'installation)
+
 Et documents :
+Vous trouvez effectivement la documentation dans votre boîte mail ainsi que la note de cadrage
+
 
 
 

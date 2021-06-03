@@ -37,7 +37,7 @@ const errorHandler = error => {//Traitement des erreurs serveur
   }
 };
 
-const server = http.createServer(app);//Création du server Node 
+const server = http.createServer(app);//Création du server app.js de Node 
 
 server.on('error', errorHandler);//Gestion des erreurs serveur
 server.on('listening', () => {//Lancement du serveur

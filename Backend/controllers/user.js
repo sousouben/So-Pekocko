@@ -27,6 +27,9 @@ require('dotenv').config();
 
 //Middleware pour l'inscription d'un utilisateur
 exports.signup = (req, res, next) => {
+  var key = CryptoJS.enc.Hex.parse("000102030405060708090a0b0c0d0e0f");
+    var iv = CryptoJS.enc.Hex.parse("101112131415161718191a1b1c1d1e1f");
+    var email = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
     var email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
     //Validation de l'email
     if (validator.isEmail(req.body.email) !== true) {
@@ -56,6 +59,9 @@ exports.signup = (req, res, next) => {
 
 //Middleware pour la connexion d'un utilisateur
 exports.login = (req, res, next) => { 
+  var key = CryptoJS.enc.Hex.parse("000102030405060708090a0b0c0d0e0f");
+    var iv = CryptoJS.enc.Hex.parse("101112131415161718191a1b1c1d1e1f");
+    var email = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
     var email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
     User.findOne({ email})
         .then(user => {

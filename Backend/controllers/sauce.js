@@ -63,30 +63,28 @@ exports.createSauce = (req, res, next) => {
 exports.likeOrDislike = (req, res, next) =>{
   let updateObject;
 
-  if (req.body.like === 1) {
-    updateObject ={
-      $inc: { likes: 1 }, $push: { usersLiked: req.body.userId }
-    }  
+    if (req.body.like === 1) {
+        updateObject = {
+            $inc: { likes: 1 }, $push: { usersLiked: req.body.userId }
+        }
 
-} else if (req.body.like === 0) {
-    updateObject = {
-       $inc: { likes: -1 }, $pull: { usersLiked: req.body.userId } 
+    } else if (req.body.like === 0) {
+        updateObject = {
+            $inc: { likes: -1 }, $pull: { usersLiked: req.body.userId }
+        }
+
+    } else if (req.body.like === -1) {
+        updateObject = {
+            $inc: { dislikes: 1 }, $push: { usersDisliked: req.body.userId }
+        }
+
+    } else {
+        updateObject = {
+            $inc: { dislikes: -1 }, $pull: { usersDisliked: req.body.userId }
+        }
     }
 
-} else if(req.body.like === -1){
-    updateObject = {
-      $inc: { dislikes: 1},$push:{ usersDisliked: req.body.userId }     
-    }   
-  
-  }else{
-    updateObject= {
-      $inc: { dislikes: -1},$pull:{ usersDisliked: req.body.userId }  
-    }
-  }
-      Sauce.updateOne({ _id: req.params.id },updateObject)
-      .then(()=> res.status(200).json({ message: 'vote'}))
-      .catch(error=>res.status(400).json ({error}));
-      
-      };
-
-        
+    Sauce.updateOne({ _id: req.params.id }, updateObject)
+        .then(() => res.status(200).json({ message: 'Vote' }))
+        .catch(error => res.status(400).json({ error }));
+};

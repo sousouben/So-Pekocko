@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');//Création d'un token pour gérer l'authentification  
-const maskdata = require('maskdata');
+
 require('dotenv').config()
 
 module.exports = (req, res, next) => {//Ce middleware permettra de protéger les routes sélectionnées et permettra de vérifier que l'utilisateur est authentifié avant d'autoriser l'envoi de requêtes

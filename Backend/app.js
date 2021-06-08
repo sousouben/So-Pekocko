@@ -5,7 +5,7 @@ const path = require('path');//Donne accès au chemin de notre système de fichi
 
 const helmet = require('helmet');// Installation de Helmet qui configure de manière appropriée des en-têtes HTTP liés à la sécurité
 require('dotenv').config();//sécurisation des données sensibles en les enregistrant dans un fichier .env
-const maskdata = require('maskdata');
+
 
 const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
@@ -14,9 +14,10 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 // Connexion à la base de données MongoDB avec la sécurité vers le fichier .env pour cacher le mot de passe
-mongoose.connect(process.env.url_connexion,
+mongoose.connect("mongodb+srv://"+ process.env.url_connexion,
   { useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
    })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));

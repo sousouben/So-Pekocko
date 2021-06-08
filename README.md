@@ -44,7 +44,7 @@ Pour s'inscrire sur l'application, l'utilisateur doit fournir un email et un mot
 Url pour se connecter à la base de donnée mongodb
 
 créer un fichier .env : 
-url_connexion = mongodb+srv://{username}:{password}@{host name}/so_pekocko?retryWrites=true&w=majority
+url_connexion = {username}:{password}@{host name}/so_pekocko?retryWrites=true&w=majority
 
 ###Éléments fournis###
 

@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');//Import du package de chiffrement bcrypt pour 
 const jwt = require('jsonwebtoken');//Import du package jsonwebtoken pour créer un token d'identification pour chaque utilisateur connecté et authentifié
 const User = require('../models/User');//Import du modèle user
 const passwordValidator = require('password-validator');//Import du package passeword-validatoir pour créer un schéma de validation de mot de passe
-const CryptoJS = require("crypto-js");//Importation du package de cryptage des emails
+var CryptoJS = require("crypto-js");//Importation du package de cryptage des emails
 
 require('dotenv').config
 
@@ -19,7 +19,7 @@ schema
 
 // Créer un compte utilisateur
 exports.signup = (req, res, next) => {//nous appelons la fonction de hachage de bcrypt dans notre mot de passe et lui demandons de « saler » le mot de passe 10 fois. Plus la valeur est élevée, plus l'exécution de la fonction sera longue, et plus le hachage sera sécurisé. c'est une fonction asynchrone qui renvoie une Promise.
-  const email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
+  var email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
     //Validation de l'email
     if (validator.isEmail(req.body.email) !== true) {
         return res.status(401).json({error: "Email non valide"});
@@ -48,7 +48,7 @@ exports.signup = (req, res, next) => {//nous appelons la fonction de hachage de 
 
   // vérifier si un utilisateur qui tente de se connecter dispose d'identifiants valides
   exports.login = (req, res, next) => {//nous utilisons notre modèle Mongoose pour vérifier que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données 
-    const email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
+    var email = CryptoJS.AES.encrypt(req.body.email, "mailsecret").toString();
     User.findOne({ email})
       .then(user => {
         if (!user) {

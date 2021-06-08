@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken');//Import du package jsonwebtoken pour créer
 const User = require('../models/User');//Import du modèle user
 const passwordValidator = require('password-validator');//Import du package passeword-validatoir pour créer un schéma de validation de mot de passe
 const maskData = require('maskdata'); //Import demakdata pour crypté l'email utilisateur
-
+require('dotenv').config
 
 const emailMask2Options = {
   maskWith: "*", 
-  unmaskedStartCharactersBeforeAt: 2,//nombre de caractères de début (avant @) à ne pas masquer.
-  unmaskedEndCharactersAfterAt: 0,//nombre de caractères après @, alors il ne masquera pas les caractères après @
+  unmaskedStartCharactersBeforeAt: 3,//nombre de caractères de début (avant @) à ne pas masquer.
+  unmaskedEndCharactersAfterAt: 2,//nombre de caractères après @, alors il ne masquera pas les caractères après @
   maskAtTheRate: false
 };
 
@@ -23,8 +23,8 @@ schema
 
 // Créer un compte utilisateur
 exports.signup = (req, res, next) => {//nous appelons la fonction de hachage de bcrypt dans notre mot de passe et lui demandons de « saler » le mot de passe 10 fois. Plus la valeur est élevée, plus l'exécution de la fonction sera longue, et plus le hachage sera sécurisé. c'est une fonction asynchrone qui renvoie une Promise.
-    if(schema.validate(req.body.password)){   
-    const maskEmail = MaskData.maskEmail2(req.body.email , emailMask2Options);
+  const maskEmail = MaskData.maskEmail2(req.body.email , emailMask2Options);
+  if(schema.validate(req.body.password)){       
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
       const user = new User({

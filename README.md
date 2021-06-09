@@ -16,6 +16,17 @@ Mettre en œuvre des opérations CRUD de manière sécurisée
 
 Sécurité OWASP et RGPD
 
+Mesures de sécurité mises en place:
+
+Hashage du mot de passe utilisateur avec bcrypt
+Cryptage des emails utilisateurs dans la base de données avec crypto-js
+Manupulation sécurisée de la base de donnée avec mongoose
+Vérification que l'email utilisateur soit unique dans la base de données avec mongoose-unique-validator
+Utilisation de variables d'environnement pour les données sensibles avec dotenv
+Authentification de l'utilisateur par token avec jsonwebtoken
+Protection des headers avec helmet
+
+
 ##Installation##
 
 Le lien du dépôt GitHub pour la partie frontend est le suivant https://github.com/OpenClassrooms-Student-Center/dwj-projet6.git

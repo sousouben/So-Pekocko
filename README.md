@@ -43,8 +43,9 @@ Pour s'inscrire sur l'application, l'utilisateur doit fournir un email et un mot
 
 Url pour se connecter à la base de donnée mongodb
 
-créer un fichier .env : 
+Ajouter un fichier de configuration nommé ".env" à la racine du backend. A l'intérieur, 2 variables d'environnement "secrètes" seront définies: 
 url_connexion = {username}:{password}@{host name}/so_pekocko?retryWrites=true&w=majority
+TOKEN = 'clé_secrète_pour_crypter_les_tokens'
 
 ###Éléments fournis###
 

@@ -50,7 +50,7 @@ Puis lancez le serveur: nodemon server.
 🖥   Connexion
 
 Ouvrir localhost:4200 dans votre navigateur.
-Pour s'inscrire sur l'application, l'utilisateur doit fournir un email et un mot de passe contenant 08 caractères minimum (dont 1 majuscule, 1 minuscule, 1 chiffre, pas d'espaces).
+Pour s'inscrire sur l'application, l'utilisateur doit fournir un email et un mot de passe contenant 06 caractères minimum (dont 1 majuscule, 1 minuscule, 1 chiffre, pas d'espaces).
 
 Url pour se connecter à la base de donnée mongodb
 

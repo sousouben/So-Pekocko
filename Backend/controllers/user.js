@@ -16,11 +16,12 @@ schema
 
 // Créer un compte utilisateur
 exports.signup = (req, res, next) => {//nous appelons la fonction de hachage de bcrypt dans notre mot de passe et lui demandons de « saler » le mot de passe 10 fois. Plus la valeur est élevée, plus l'exécution de la fonction sera longue, et plus le hachage sera sécurisé. c'est une fonction asynchrone qui renvoie une Promise.
-  if (schema.validate(req.body.password)) {   
-    bcrypt.hash(req.body.password, 10)    
+  if (schema.validate(req.body.password)) {
+    bcrypt.hash(req.body.password, 10)
       .then(hash => {
-        var encrypted = CryptoJS.AES.encrypt(req.body.email, process.env.PASSEPHRASE).toString();
-       console.log(encrypted);
+        var key = CryptoJS.enc.Hex.parse(process.env.Crypto_key);
+        var iv = CryptoJS.enc.Hex.parse(process.env.Crypto_iv);
+        var encrypted = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();             
         const user = new User({
           email: encrypted,
           password: hash
@@ -41,11 +42,13 @@ exports.signup = (req, res, next) => {//nous appelons la fonction de hachage de 
 
 // vérifier si un utilisateur qui tente de se connecter dispose d'identifiants valides
 exports.login = (req, res, next) => {//nous utilisons notre modèle Mongoose pour vérifier que l'e-mail entré par l'utilisateur correspond à un utilisateur existant de la base de données 
-  console.log("test");
-  var decrypted = CryptoJS.AES.decrypt(req.body.email, process.env.PASSEPHRASE).toString();
-  console.log(decrypted);
-    User.findOne({ email:decrypted })  
-    .then(user => {      
+  var key = CryptoJS.enc.Hex.parse(process.env.Crypto_key);
+        var iv = CryptoJS.enc.Hex.parse(process.env.Crypto_iv);
+        var encrypted = CryptoJS.AES.encrypt(req.body.email, key, { iv: iv }).toString();
+
+  User.findOne({ email: encrypted})
+    .then(user => {
+      console.log(user);
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }

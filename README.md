@@ -60,9 +60,9 @@ url_connexion = {username}:{password}@{host name}/so_pekocko?retryWrites=true&w=
 
 TOKEN = clé_secrète_pour_crypter_les_tokens
 
-Crypto_key = chaine exadécimale
+Crypto_key = chaine_hexadécimale
 
-Crypto_iv = chaine exadécimale
+Crypto_iv = chaine_hexadécimale
 
 
 ###Éléments fournis###

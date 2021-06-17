@@ -10,7 +10,7 @@ require('dotenv').config();//sécurisation des données sensibles en les enregis
 const saucesRoutes = require('./routes/sauce');//router
 const userRoutes = require('./routes/user');
 
-//crée une application
+//crée une application express
 const app = express();
 
 // Connexion à la base de données MongoDB avec la sécurité vers le fichier .env pour cacher le mot de passe

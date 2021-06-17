@@ -77,7 +77,7 @@ exports.likeOrDislike = (req, res, next) => {
 
      case -1 : // si l'utilisateur Dislike une sauce 
      if (!sauce.usersDisliked.includes(req.body.userId)) {  //on vérife si l'utilisateur n'a pas Dislike déja cet sauce
-      Sauce.updateOne({_id: req.params.id}, {$inc: {Dislikes: 1}, $push: {usersDisliked: req.body.userId}, _id: req.params.id})
+      Sauce.updateOne({_id: req.params.id}, {$inc: {dislikes: 1}, $push: {usersDisliked: req.body.userId}, _id: req.params.id})
       // on Incremente Dislike et on push the userId dans le tableau usersDisLiked
        .then(() => res.status(201).json({message: 'DisLike ajouté avec suucès !'}))
        .catch(error => res.status(400).json({error}));
@@ -91,7 +91,7 @@ exports.likeOrDislike = (req, res, next) => {
       .then(()=> res.status(201).json({message: 'like annulé avec succès !'}))
       .catch(error => res.status(400).json({error}));
      } else if (sauce.usersDisliked.includes(req.body.userId)){ // si le user a Dislike déja cet sauce
-      Sauce.updateOne({_id: req.params.id}, {$inc: {Dislikes: -1}, $pull: {usersDisliked: req.body.userId},_id: req.params.id})
+      Sauce.updateOne({_id: req.params.id}, {$inc: {dislikes: -1}, $pull: {usersDisliked: req.body.userId},_id: req.params.id})
                // on enléve le Dislike et on enléve users'Id du tableau userDisliked
                .then(()=> res.status(201).json({message: 'Dislike annulé avec succès !'}))
                .catch(error => res.status(400).json({error}));
